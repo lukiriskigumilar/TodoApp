@@ -14,7 +14,20 @@ services:
       - ./server/.env
     depends_on:
       - db
-  
+  drizzle-gateway:
+    image: ghcr.io/drizzle-team/gateway:latest
+    container_name: drizzle-studio
+    ports:
+      - "4983:4983"
+    environment:
+      PORT: 4983
+    volumes: 
+      - drizzle_data:/app
+    depends_on:
+      - db
+      
+    
+    
   db:
     image: postgres:13
     container_name: postgresTodoApp
@@ -29,3 +42,4 @@ services:
       - postgres_data:/var/lib/postgresql/data
 volumes:
   postgres_data:
+  drizzle_data:
