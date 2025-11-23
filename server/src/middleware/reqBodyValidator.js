@@ -23,3 +23,5 @@ const reqBodyValidator = (schema) => {
         next()
     }   
 }
+
+export default reqBodyValidator

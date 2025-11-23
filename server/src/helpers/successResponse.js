@@ -1,4 +1,4 @@
-sendSuccessResponse = (res,message, data =[], statusCode = 200, pagination=null ) => {
+const sendSuccessResponse = (res,message, data =[], statusCode = 200, pagination=null ) => {
     const responseData = {
         success: true,
         statusCode,
