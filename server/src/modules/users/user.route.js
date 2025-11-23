@@ -7,5 +7,6 @@ import userController from "./user.controller.js";
 const userRouter = express.Router();
 
 userRouter.post('/register',reqBodyValidator(registerSchema), userController.userRegisterController)
+userRouter.post('/identify', reqBodyValidator(registerSchema),userController.identifyUserController)
 
 export default userRouter
