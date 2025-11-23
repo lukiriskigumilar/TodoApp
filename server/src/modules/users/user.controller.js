@@ -11,4 +11,15 @@ const userRegisterController = async (req,res,next) =>{
     }
 }
 
-export default {userRegisterController}
+const identifyUserController = async (req,res,next) =>{
+    const {username} = req.body;
+
+    try {
+        const user = await userService.identifyUserService(username);
+        sendSuccessResponse(res,'identify successfully', user, 200, null)
+    } catch (error) {
+        next(error);
+    }
+}
+
+export default {userRegisterController, identifyUserController}
