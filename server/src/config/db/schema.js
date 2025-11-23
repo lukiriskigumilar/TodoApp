@@ -12,6 +12,10 @@ export const users = pgTable("users", {
 export const todoCategories = pgTable("todo_categories", {
     id:varchar("id").primaryKey(),
     name: varchar("name").notNull(),
+    userId: varchar("user_id").notNull()
+        .references(
+            () => users.id, {onDelete: "cascade"}
+        ),
     createdAt: timestamp("created_at").notNull().defaultNow(),
 });
 
