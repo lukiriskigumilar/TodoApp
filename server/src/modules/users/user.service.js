@@ -13,4 +13,12 @@ const createUserService = async (data) => {
     return await userRepository.createUser(data)
 }
 
-export default {createUserService}
+const identifyUserService = async (username) => {
+    const user = await userRepository.findUserByUsername(username);
+    if(!user){
+        throw new AppError("identify failed", 404, [])
+    }
+    return user;
+}
+
+export default {createUserService, identifyUserService}
