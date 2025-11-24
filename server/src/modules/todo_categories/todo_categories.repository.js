@@ -21,4 +21,17 @@ const findTodosCategoriesByName = async(name) =>{
         return rows[0] ?? null;
 }
 
-export default{createTodosCategory, findTodosCategoriesByName, findUserById}
+const getTodoCategories = async (user_id) =>{
+    const rows = await db
+    .select({
+        id: todoCategories.id,
+        name:todoCategories.name,
+    })
+    .from(todoCategories)
+    .leftJoin(users, eq(todoCategories.userId, users.id))
+    .where(eq(todoCategories.userId, user_id))
+
+    return rows;
+}
+
+export default{createTodosCategory, findTodosCategoriesByName, findUserById, getTodoCategories}
