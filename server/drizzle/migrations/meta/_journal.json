@@ -15,6 +15,13 @@
       "when": 1763900979682,
       "tag": "0001_lyrical_masked_marvel",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1763970426593,
+      "tag": "0002_neat_big_bertha",
+      "breakpoints": true
     }
   ]
 }
