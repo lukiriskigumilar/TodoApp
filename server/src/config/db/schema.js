@@ -1,7 +1,6 @@
 import { pgTable, varchar, text, boolean, integer, timestamp } from "drizzle-orm/pg-core";
 
 //USERS
-
 export const users = pgTable("users", {
     id: varchar("id").primaryKey(),
     username: varchar("username").notNull().unique(),
@@ -34,6 +33,7 @@ export const todos = pgTable("todos", {
     desc: text("desc"),
     isCompleted: boolean("is_completed").default(false),
     priority: integer("priority"),
+    dueDate: timestamp("dueDate"),
     createdAt: timestamp("created_at").defaultNow(),
     updatedAt: timestamp("updated_at").defaultNow(),
 });
