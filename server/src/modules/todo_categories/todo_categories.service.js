@@ -6,15 +6,22 @@ import { v4 as uuidV4 } from "uuid";
 // SERVICE HELPER
 //----------------------------
 async function assertUserExist(userId, messageError) {
-  const user = await todo_categoriesRepository.findUserById(userId)
-  console.log(user)
-  console.log(userId)
+  const user = await todo_categoriesRepository.findUserById(userId);
+  console.log(user);
+  console.log(userId);
   if (!user) {
     throw new AppError(messageError, 404, {
       reason: "invalid user id",
     });
   }
   return user;
+}
+
+function categoriesResponse(data) {
+  return {
+    found: data.length,
+    todos_categories: data,
+  };
 }
 
 //------------------------
@@ -32,14 +39,22 @@ const createTodoCategoriesService = async (data) => {
       reason: "todo categories name was exist",
     });
   }
-  
+
   const payload = {
-    id:uuidV4(),
-    name:data.name,
-    userId
-  }
+    id: uuidV4(),
+    name: data.name,
+    userId,
+  };
 
   return await todo_categoriesRepository.createTodosCategory(payload);
 };
 
-export default { createTodoCategoriesService };
+const getTodoCategories = async (data) => {
+  const userId = data.user_id;
+  await assertUserExist(userId);
+
+  const getData = await todo_categoriesRepository.getTodoCategories(userId);
+  return categoriesResponse(getData);
+};
+
+export default { createTodoCategoriesService, getTodoCategories };
