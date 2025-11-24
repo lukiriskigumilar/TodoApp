@@ -33,7 +33,7 @@ export const todos = pgTable("todos", {
     desc: text("desc"),
     isCompleted: boolean("is_completed").default(false),
     priority: integer("priority"),
-    dueDate: timestamp("dueDate"),
+    dueDate: timestamp("due_date"),
     createdAt: timestamp("created_at").defaultNow(),
     updatedAt: timestamp("updated_at").defaultNow(),
 });
